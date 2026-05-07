@@ -40,6 +40,8 @@ Trigger it by telling Claude something like:
 
 Or just paste a folder path and a Figma section URL — Claude will recognize the intent automatically.
 
+**Getting the Figma link:** Right-click the section → **Copy link**, or use the Share button. Works from both the browser and the Mac app. Avoid copying from the Mac app's address bar — it may produce a `figma://` deep link that won't work.
+
 ## Layout
 
 ```

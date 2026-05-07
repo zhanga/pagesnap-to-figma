@@ -27,8 +27,10 @@ The user may paste a Figma URL with a `node-id` param — that's the target sect
 > "Which Figma section should I place the screenshots in? Please paste the section's URL (or its node ID and file key)."
 
 Parse the URL:
-- `fileKey` → the segment after `/design/`
+- `fileKey` → the segment after `/design/` or `/file/` (both formats exist)
 - `nodeId` → the `node-id` query param, replacing `-` with `:`
+
+**How to get the link:** Right-click the section in Figma → **Copy link**, or use the Share button. Works the same from the browser or the Mac app. Avoid copying from the address bar — the Figma Mac app may produce a `figma://` deep link that won't parse correctly.
 
 ## Step 2 — Read and sort screenshots
 
