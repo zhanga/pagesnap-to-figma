@@ -1,0 +1,83 @@
+{
+  "skill_name": "pagesnap-to-figma",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Lay out screenshots from 'test' folder to Figma",
+      "expected_output": "Skill triggers and asks the user which Figma section to use, since no URL was provided. It should not attempt to write to Figma without a section URL.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "skill_triggers",
+          "name": "Skill triggers",
+          "description": "The pagesnap-to-figma skill is invoked (SKILL.md is loaded)",
+          "type": "manual"
+        },
+        {
+          "id": "asks_for_url",
+          "name": "Asks for Figma URL",
+          "description": "Claude asks the user for a Figma section URL before proceeding",
+          "type": "manual"
+        },
+        {
+          "id": "no_figma_write",
+          "name": "Does not write to Figma without URL",
+          "description": "No use_figma, get_metadata, or upload_assets calls are made before a URL is provided",
+          "type": "manual"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Lay out screenshots from the 'DoesNotExist' folder into this Figma section: https://www.figma.com/design/nbhM7uDCcAbONt7r5k4rRE/Classes--Corporate-Dashboard-?node-id=6015-271&t=J1GYD2pJl7bS6RFi-1",
+      "expected_output": "Skill triggers, resolves the Figma section info, looks for a folder named 'DoesNotExist' in common locations, does not find it, and reports the folder was not found — asking the user where it is.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "skill_triggers",
+          "name": "Skill triggers",
+          "description": "The pagesnap-to-figma skill is invoked",
+          "type": "manual"
+        },
+        {
+          "id": "folder_not_found_reported",
+          "name": "Reports folder not found",
+          "description": "Claude reports that the 'DoesNotExist' folder could not be found and asks the user for the path",
+          "type": "manual"
+        },
+        {
+          "id": "no_images_uploaded",
+          "name": "Does not upload to Figma",
+          "description": "No images are uploaded and no frames are created in Figma",
+          "type": "manual"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "add my screenshots to Figma — I have a 'Test' folder on my Desktop",
+      "expected_output": "Skill triggers (vague phrasing should still activate it), finds the 'Test' folder on the Desktop, and asks for the Figma section URL since none was provided.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "skill_triggers",
+          "name": "Skill triggers on vague phrasing",
+          "description": "The pagesnap-to-figma skill triggers even without the user explicitly saying 'pagesnap' or 'screenshot layout'",
+          "type": "manual"
+        },
+        {
+          "id": "resolves_folder",
+          "name": "Resolves the folder",
+          "description": "Claude locates the 'Test' folder (or reports where it looked)",
+          "type": "manual"
+        },
+        {
+          "id": "asks_for_url",
+          "name": "Asks for Figma URL",
+          "description": "Claude asks the user which Figma section to place screenshots in",
+          "type": "manual"
+        }
+      ]
+    }
+  ]
+}
